@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="generator" content="Crystal Docs 0.36.1">
+<meta name="crystal_docs.project_version" content="master">
+<meta name="crystal_docs.project_name" content="lucky_task">
+
+
+
+<link href="../css/style.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="../js/doc.js"></script>
+
+  <meta name="repository-name" content="lucky_task">
+  <title>LuckyTask::Task - lucky_task master</title>
+  <script type="text/javascript">
+    CrystalDocs.base_path = "../";
+  </script>
+</head>
+<body>
+
+<svg class="hidden">
+  <symbol id="octicon-link" viewBox="0 0 16 16">
+    <path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path>
+  </symbol>
+</svg>
+<div class="sidebar">
+  <div class="sidebar-header">
+    <div class="search-box">
+      <input type="search" class="search-input" placeholder="Search..." spellcheck="false" aria-label="Search">
+    </div>
+
+    <div class="project-summary">
+      <h1 class="project-name">
+        <a href="../index.html">
+          lucky_task
+        </a>
+      </h1>
+
+      <span class="project-version">
+        master
+      </span>
+    </div>
+  </div>
+
+  <div class="search-results hidden">
+    <ul class="search-list"></ul>
+  </div>
+
+  <div class="types-list">
+    <ul>
+  
+  <li class="parent open current" data-id="lucky_task/LuckyTask" data-name="luckytask">
+      <a href="../LuckyTask.html">LuckyTask</a>
+      
+        <ul>
+  
+  <li class=" " data-id="lucky_task/LuckyTask/Runner" data-name="luckytask::runner">
+      <a href="../LuckyTask/Runner.html">Runner</a>
+      
+    </li>
+  
+  <li class=" current" data-id="lucky_task/LuckyTask/Task" data-name="luckytask::task">
+      <a href="../LuckyTask/Task.html">Task</a>
+      
+    </li>
+  
+  <li class=" " data-id="lucky_task/LuckyTask/TaskNotFoundErrorMessage" data-name="luckytask::tasknotfounderrormessage">
+      <a href="../LuckyTask/TaskNotFoundErrorMessage.html">TaskNotFoundErrorMessage</a>
+      
+    </li>
+  
+  <li class=" " data-id="lucky_task/LuckyTask/TextHelpers" data-name="luckytask::texthelpers">
+      <a href="../LuckyTask/TextHelpers.html">TextHelpers</a>
+      
+    </li>
+  
+</ul>
+
+      
+    </li>
+  
+</ul>
+
+  </div>
+</div>
+
+
+<div class="main-content">
+<h1 class="type-name">
+
+  <span class="kind">abstract class</span> LuckyTask::Task
+
+</h1>
+
+
+  <ul class="superclass-hierarchy"><li class="superclass"><a href="../LuckyTask/Task.html">LuckyTask::Task</a></li><li class="superclass">Reference</li><li class="superclass">Object</li></ul>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <h2>
+    <a id="defined-in" class="anchor" href="#defined-in">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Defined in:
+  </h2>
+  
+    
+      <a href="https://github.com/luckyframework/lucky_task/blob/eec178bae5e1740989e2e85fbd6e00393dc11a6c/src/lucky_task/task.cr#L1" target="_blank">
+        lucky_task/task.cr
+      </a>
+    
+    <br/>
+  
+
+
+
+
+
+
+
+
+
+  <h2>
+    <a id="instance-method-summary" class="anchor" href="#instance-method-summary">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Instance Method Summary
+  </h2>
+  <ul class="list-summary">
+    
+      <li class="entry-summary">
+        <a href="#call-instance-method" class="signature"><strong>#call</strong></a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#summary-instance-method" class="signature"><strong>#summary</strong></a>
+        
+      </li>
+    
+  </ul>
+
+
+
+  <h2>
+    <a id="macro-summary" class="anchor" href="#macro-summary">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Macro Summary
+  </h2>
+  <ul class="list-summary">
+    
+      <li class="entry-summary">
+        <a href="#arg(arg_name,description,shortcut=nil,optional=false,format=nil,example=nil)-macro" class="signature"><strong>arg</strong>(arg_name, description, shortcut = <span class="n">nil</span>, optional = <span class="n">false</span>, format = <span class="n">nil</span>, example = <span class="n">nil</span>)</a>
+        
+          <div class="summary"><p>Creates a method of <code>arg_name</code> that returns the value passed in from the CLI.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#name(name_text)-macro" class="signature"><strong>name</strong>(name_text)</a>
+        
+          <div class="summary"><p>Sets a custom title for the task</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#positional_arg(arg_name,description,to_end=false,format=nil,example=nil)-macro" class="signature"><strong>positional_arg</strong>(arg_name, description, to_end = <span class="n">false</span>, format = <span class="n">nil</span>, example = <span class="n">nil</span>)</a>
+        
+          <div class="summary"><p>Creates a method of <code>arg_name</code> that returns the value passed in from the CLI.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#summary(summary_text)-macro" class="signature"><strong>summary</strong>(summary_text)</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#switch(arg_name,description,shortcut=nil)-macro" class="signature"><strong>switch</strong>(arg_name, description, shortcut = <span class="n">nil</span>)</a>
+        
+          <div class="summary"><p>Creates a method of <code>arg_name</code> where the return value is boolean.</p></div>
+        
+      </li>
+    
+  </ul>
+
+
+
+<div class="methods-inherited">
+  
+    
+
+
+    
+
+
+    
+
+
+  
+    
+
+
+    
+
+
+    
+
+
+  
+</div>
+
+
+
+
+
+
+  <h2>
+    <a id="instance-method-detail" class="anchor" href="#instance-method-detail">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Instance Method Detail
+  </h2>
+  
+    <div class="entry-detail" id="call-instance-method">
+      <div class="signature">
+        abstract 
+        def <strong>call</strong>
+
+        <a class="method-permalink" href="#call-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/luckyframework/lucky_task/blob/eec178bae5e1740989e2e85fbd6e00393dc11a6c/src/lucky_task/task.cr#L190" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="summary-instance-method">
+      <div class="signature">
+        abstract 
+        def <strong>summary</strong>
+
+        <a class="method-permalink" href="#summary-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/luckyframework/lucky_task/blob/eec178bae5e1740989e2e85fbd6e00393dc11a6c/src/lucky_task/task.cr#L191" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+
+
+
+  <h2>
+    <a id="macro-detail" class="anchor" href="#macro-detail">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Macro Detail
+  </h2>
+  
+    <div class="entry-detail" id="arg(arg_name,description,shortcut=nil,optional=false,format=nil,example=nil)-macro">
+      <div class="signature">
+        
+        macro <strong>arg</strong>(arg_name, description, shortcut = <span class="n">nil</span>, optional = <span class="n">false</span>, format = <span class="n">nil</span>, example = <span class="n">nil</span>)
+
+        <a class="method-permalink" href="#arg(arg_name,description,shortcut=nil,optional=false,format=nil,example=nil)-macro">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Creates a method of <code>arg_name</code> that returns the value passed in from the CLI.
+The CLI arg is specified by the <code>--arg_name=VALUE</code> flag.</p>
+
+<ul><li><code>arg_name</code> : String - The name of the argument</li><li><code>description</code> : String - The help text description for this option</li><li><code>shorcut</code> : String - An optional short flag (e.g. -a VALUE)</li><li><code>optional</code> : Bool - When false, raise exception if this arg is not passed</li><li><code>format</code> : Regex - The format you expect the args to match</li><li><code>example</code> : String - An example string that matches the given <code>format</code></li></ul>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/luckyframework/lucky_task/blob/eec178bae5e1740989e2e85fbd6e00393dc11a6c/src/lucky_task/task.cr#L121" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="name(name_text)-macro">
+      <div class="signature">
+        
+        macro <strong>name</strong>(name_text)
+
+        <a class="method-permalink" href="#name(name_text)-macro">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Sets a custom title for the task</p>
+
+<p>By default the name is derived from the full module and class name.
+However if that name is not desired, a custom one can be set.</p>
+
+<pre><code class="language-crystal"><span class="k">class</span> <span class="t">Dev</span><span class="t">::</span><span class="t">Prime</span> <span class="o">&lt;</span> <span class="t">LuckyTask</span><span class="t">::</span><span class="t">Task</span>
+  <span class="c"># Would be &quot;dev.prime&quot; by default, but we want to set it to &quot;dev.setup&quot;:</span>
+  name <span class="s">&quot;dev.setup&quot;</span>
+  summary <span class="s">&quot;Seed the development database with example data&quot;</span>
+
+  <span class="c"># other methods, etc.</span>
+<span class="k">end</span></code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/luckyframework/lucky_task/blob/eec178bae5e1740989e2e85fbd6e00393dc11a6c/src/lucky_task/task.cr#L61" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="positional_arg(arg_name,description,to_end=false,format=nil,example=nil)-macro">
+      <div class="signature">
+        
+        macro <strong>positional_arg</strong>(arg_name, description, to_end = <span class="n">false</span>, format = <span class="n">nil</span>, example = <span class="n">nil</span>)
+
+        <a class="method-permalink" href="#positional_arg(arg_name,description,to_end=false,format=nil,example=nil)-macro">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Creates a method of <code>arg_name</code> that returns the value passed in from the CLI.
+The CLI arg position is based on the order in which <code><a href="../LuckyTask/Task.html#positional_arg(arg_name,description,to_end=false,format=nil,example=nil)-macro">positional_arg</a></code> is specified
+with the first call being position 0, and so on.</p>
+
+<p>If your arg takes more than one value, you can set <code>to_end</code> to true to capture all
+args from this position to the end. This will make your <code>arg_name</code> method return <code>Array(String)</code>.</p>
+
+<ul><li><code>arg_name</code> : String - The name of the argument</li><li><code>description</code> : String - The help text description for this option</li><li><code>to_end</code> : Bool - Capture all args from this position to the end.</li><li><code>format</code> : Regex - The format you expect the args to match</li><li><code>example</code> : String - An example string that matches the given <code>format</code></li></ul>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/luckyframework/lucky_task/blob/eec178bae5e1740989e2e85fbd6e00393dc11a6c/src/lucky_task/task.cr#L79" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="summary(summary_text)-macro">
+      <div class="signature">
+        
+        macro <strong>summary</strong>(summary_text)
+
+        <a class="method-permalink" href="#summary(summary_text)-macro">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/luckyframework/lucky_task/blob/eec178bae5e1740989e2e85fbd6e00393dc11a6c/src/lucky_task/task.cr#L41" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="switch(arg_name,description,shortcut=nil)-macro">
+      <div class="signature">
+        
+        macro <strong>switch</strong>(arg_name, description, shortcut = <span class="n">nil</span>)
+
+        <a class="method-permalink" href="#switch(arg_name,description,shortcut=nil)-macro">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Creates a method of <code>arg_name</code> where the return value is boolean.
+If the flag <code>--arg_name</code> is passed, the value is <code>true</code>.</p>
+
+<ul><li><code>arg_name</code> : String - The name of the argument</li><li><code>description</code> : String - The help text description for this option</li><li><code>shorcut</code> : String - An optional short flag (e.g. <code>-a</code>)</li></ul>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/luckyframework/lucky_task/blob/eec178bae5e1740989e2e85fbd6e00393dc11a6c/src/lucky_task/task.cr#L171" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+
+
+</div>
+
+</body>
+</html>
