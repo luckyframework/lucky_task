@@ -13,7 +13,7 @@ jobs:
           persist-credentials: false
       - uses: crystal-lang/install-crystal@v1
         with:
-          crystal: ${{matrix.crystal_version}}
+          crystal: 1.0.0
       - name: "Install shards"
         run: shards install
       - name: "Generate docs"
