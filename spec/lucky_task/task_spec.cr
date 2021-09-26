@@ -89,6 +89,21 @@ describe LuckyTask::Task do
       task.admin?.should eq true
     end
 
+    it "sets int32 flags that default to 0" do
+      task = TaskWithInt32Flags.new.print_help_or_call(args: [] of String).not_nil!
+      task.zero.should eq 0
+      task.uno.should eq 1
+    end
+
+    it "sets int32 flags from args" do
+      task = TaskWithInt32Flags.new.print_help_or_call(args: ["-u 10,000","--zero=1_000"]).not_nil!
+      task.zero.should eq 1_000
+      task.uno.should eq 10_000
+      expect_raises(Exception, /"nada" is an invalid value for uno/) do
+        TaskWithInt32Flags.new.print_help_or_call(args: ["-u nada"])
+      end
+    end
+
     it "allows positional args that do not require a flag name" do
       task = TaskWithPositionalArgs.new.print_help_or_call(args: ["User", "name:String", "email:String"]).not_nil!
       task.model.should eq "User"
