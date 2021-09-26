@@ -69,6 +69,18 @@ class TaskWithInt32Flags < LuckyTask::Task
   end
 end
 
+class TaskWithFloat64Flags < LuckyTask::Task
+  summary "This is a task with float64 flags"
+
+  float64 :zero, "going to zero in a hurry"
+  float64 :uno, description: "defaults to one", shortcut: "-u", default: 1
+  float64 :pi, description: "defaults to PI", shortcut: "-p", default: 3.14
+
+  def call
+    self
+  end
+end
+
 class TaskWithPositionalArgs < LuckyTask::Task
   summary "This is a task with positional args"
 

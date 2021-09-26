@@ -104,6 +104,35 @@ describe LuckyTask::Task do
       end
     end
 
+    it "sets explicit negative/positive int32 flags from args" do
+      task = TaskWithInt32Flags.new.print_help_or_call(args: ["-u -10,000","--zero=+1_000"]).not_nil!
+      task.zero.should eq 1_000
+      task.uno.should eq -10_000
+    end
+
+    it "sets float64 flags that default to 0" do
+      task = TaskWithFloat64Flags.new.print_help_or_call(args: [] of String).not_nil!
+      task.zero.should eq 0.0
+      task.uno.should eq 1.0
+      task.pi.should eq 3.14
+    end
+
+    it "sets float64 flags from args" do
+      task = TaskWithFloat64Flags.new.print_help_or_call(args: ["-u 123_456.789","--zero=1_000"]).not_nil!
+      task.zero.should eq 1_000.0
+      task.uno.should eq 123_456.789
+      task.pi.should eq 3.14
+      expect_raises(Exception, /"nada" is an invalid value for uno/) do
+        TaskWithFloat64Flags.new.print_help_or_call(args: ["-u nada"])
+      end
+    end
+
+    it "sets explicit negative/positive float64 flags from args" do
+      task = TaskWithFloat64Flags.new.print_help_or_call(args: ["-u -100","--zero=+505.1"]).not_nil!
+      task.zero.should eq 505.1
+      task.uno.should eq -100.0
+    end
+
     it "allows positional args that do not require a flag name" do
       task = TaskWithPositionalArgs.new.print_help_or_call(args: ["User", "name:String", "email:String"]).not_nil!
       task.model.should eq "User"
