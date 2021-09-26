@@ -212,7 +212,7 @@ abstract class LuckyTask::Task
         if value !~ /^[\+\-]?[0-9\_\,]+$/
           raise <<-ERROR
             #{value.inspect} is an invalid value for {{ arg_name.id }}. It should be a valid Int32
-            Examples: 1 or 1,000 or 10_000
+            Examples: 1 or 1,000 or 10_000 or -1
           ERROR
         end
         @{{ arg_name.id }} = value.gsub(/[\_\,]/, "").to_i32
@@ -248,8 +248,8 @@ abstract class LuckyTask::Task
         value = value.strip.gsub("_", "")
         if value !~ /^[+-]?([0-9]*[.])?[0-9]+$/
           raise <<-ERROR
-            #{value.inspect} is an invalid value for {{ arg_name.id }}. It should be a valid Int32
-            Examples: 1 or 1,000 or 10_000
+            #{value.inspect} is an invalid value for {{ arg_name.id }}. It should be a valid Float64
+            Examples: 1 or 1.0 or 1_000.0 or -1.0
           ERROR
         end
         @{{ arg_name.id }} = value.to_f64
