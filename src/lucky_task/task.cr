@@ -234,7 +234,7 @@ abstract class LuckyTask::Task
   # * `default` : Float64 - An optional default value (`0.0` is default when omittted)
   #
   # Example:
-  #      float64 :threshold, "(0.1, 3.14, etc.)", shortcut: "-t", default: 2.0
+  #      float64 :threshold, "(0.1, 3.14, -5.1, etc.)", shortcut: "-t", default: 2.0
   macro float64(arg_name, description, shortcut = nil, default = nil)
     {% PARSER_OPTS << arg_name %}
     @{{ arg_name.id }} : Float64 = {{ default || 0.0 }}
