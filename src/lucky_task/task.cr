@@ -200,7 +200,7 @@ abstract class LuckyTask::Task
   #      int32 :limit, "limit (1000, 10_000, etc.)", shortcut: "-l", default: 1_000
   macro int32(arg_name, description, shortcut = nil, default = nil)
     {% PARSER_OPTS << arg_name %}
-    @{{ arg_name.id }} : Int32 = {% if default.nil? %}0{% else %}{{ default.id }}{% end %}
+    @{{ arg_name.id }} : Int32 = {{ default || 0 }}
 
     def set_opt_for_{{ arg_name.id }}(unused_args : Array(String))
       option_parser.on(
@@ -237,7 +237,7 @@ abstract class LuckyTask::Task
   #      float64 :threshold, "(0.1, 3.14, etc.)", shortcut: "-t", default: 2.0
   macro float64(arg_name, description, shortcut = nil, default = nil)
     {% PARSER_OPTS << arg_name %}
-    @{{ arg_name.id }} : Float64 = {% if default.nil? %}0{% else %}{{ default.id }}{% end %}
+    @{{ arg_name.id }} : Float64 = {{ default || 0.0 }}
 
     def set_opt_for_{{ arg_name.id }}(unused_args : Array(String))
       option_parser.on(
