@@ -123,7 +123,7 @@
   </h2>
   
     
-      <a href="https://github.com/luckyframework/lucky_task/blob/eec178bae5e1740989e2e85fbd6e00393dc11a6c/src/lucky_task/task.cr#L1" target="_blank">
+      <a href="https://github.com/luckyframework/lucky_task/blob/cee3f315251af27b3fc77e3ceabd8f2228e5d5ec/src/lucky_task/task.cr#L1" target="_blank">
         lucky_task/task.cr
       </a>
     
@@ -176,6 +176,20 @@
         <a href="#arg(arg_name,description,shortcut=nil,optional=false,format=nil,example=nil)-macro" class="signature"><strong>arg</strong>(arg_name, description, shortcut = <span class="n">nil</span>, optional = <span class="n">false</span>, format = <span class="n">nil</span>, example = <span class="n">nil</span>)</a>
         
           <div class="summary"><p>Creates a method of <code>arg_name</code> that returns the value passed in from the CLI.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#float64(arg_name,description,shortcut=nil,default=nil)-macro" class="signature"><strong>float64</strong>(arg_name, description, shortcut = <span class="n">nil</span>, default = <span class="n">nil</span>)</a>
+        
+          <div class="summary"><p>Creates a method of <code>arg_name</code> where the return value is an Float64.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#int32(arg_name,description,shortcut=nil,default=nil)-macro" class="signature"><strong>int32</strong>(arg_name, description, shortcut = <span class="n">nil</span>, default = <span class="n">nil</span>)</a>
+        
+          <div class="summary"><p>Creates a method of <code>arg_name</code> where the return value is an Int32.</p></div>
         
       </li>
     
@@ -258,7 +272,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/luckyframework/lucky_task/blob/eec178bae5e1740989e2e85fbd6e00393dc11a6c/src/lucky_task/task.cr#L190" target="_blank">View source</a>]
+          [<a href="https://github.com/luckyframework/lucky_task/blob/cee3f315251af27b3fc77e3ceabd8f2228e5d5ec/src/lucky_task/task.cr#L264" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -274,7 +288,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/luckyframework/lucky_task/blob/eec178bae5e1740989e2e85fbd6e00393dc11a6c/src/lucky_task/task.cr#L191" target="_blank">View source</a>]
+          [<a href="https://github.com/luckyframework/lucky_task/blob/cee3f315251af27b3fc77e3ceabd8f2228e5d5ec/src/lucky_task/task.cr#L265" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -310,7 +324,65 @@ The CLI arg is specified by the <code>--arg_name=VALUE</code> flag.</p>
       <br/>
       <div>
         
-          [<a href="https://github.com/luckyframework/lucky_task/blob/eec178bae5e1740989e2e85fbd6e00393dc11a6c/src/lucky_task/task.cr#L121" target="_blank">View source</a>]
+          [<a href="https://github.com/luckyframework/lucky_task/blob/cee3f315251af27b3fc77e3ceabd8f2228e5d5ec/src/lucky_task/task.cr#L121" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="float64(arg_name,description,shortcut=nil,default=nil)-macro">
+      <div class="signature">
+        
+        macro <strong>float64</strong>(arg_name, description, shortcut = <span class="n">nil</span>, default = <span class="n">nil</span>)
+
+        <a class="method-permalink" href="#float64(arg_name,description,shortcut=nil,default=nil)-macro">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Creates a method of <code>arg_name</code> where the return value is an Float64.
+If the flag <code>--arg_name</code> is passed, the result is the value passed, otherwise is set to
+the specified default, or <code>0.0</code> when not specified.</p>
+
+<ul><li><code>arg_name</code> : String - The name of the argument</li><li><code>description</code> : String - The help text description for this option</li><li><code>shorcut</code> : String - An optional short flag (e.g. <code>-a</code>)</li><li><code>default</code> : Float64 - An optional default value (<code>0.0</code> is default when omittted)</li></ul>
+
+<p>Example:</p>
+
+<pre><code class="language-crystal"> float64 <span class="n">:threshold</span>, <span class="s">&quot;(0.1, 3.14, -5.1, etc.)&quot;</span>, shortcut: <span class="s">&quot;-t&quot;</span>, default: <span class="n">2.0</span></code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/luckyframework/lucky_task/blob/cee3f315251af27b3fc77e3ceabd8f2228e5d5ec/src/lucky_task/task.cr#L238" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="int32(arg_name,description,shortcut=nil,default=nil)-macro">
+      <div class="signature">
+        
+        macro <strong>int32</strong>(arg_name, description, shortcut = <span class="n">nil</span>, default = <span class="n">nil</span>)
+
+        <a class="method-permalink" href="#int32(arg_name,description,shortcut=nil,default=nil)-macro">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Creates a method of <code>arg_name</code> where the return value is an Int32.
+If the flag <code>--arg_name</code> is passed, the result is the value passed, otherwise is set to
+the specified default, or <code>0</code> when not specified.</p>
+
+<ul><li><code>arg_name</code> : String - The name of the argument</li><li><code>description</code> : String - The help text description for this option</li><li><code>shorcut</code> : String - An optional short flag (e.g. <code>-a</code>)</li><li><code>default</code> : Int32 - An optional default value (<code>0</code> is default when omittted)</li></ul>
+
+<p>Example:</p>
+
+<pre><code class="language-crystal"> int32 <span class="n">:limit</span>, <span class="s">&quot;limit (1000, 10_000, etc.)&quot;</span>, shortcut: <span class="s">&quot;-l&quot;</span>, default: <span class="n">1_000</span></code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/luckyframework/lucky_task/blob/cee3f315251af27b3fc77e3ceabd8f2228e5d5ec/src/lucky_task/task.cr#L201" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -342,7 +414,7 @@ However if that name is not desired, a custom one can be set.</p>
       <br/>
       <div>
         
-          [<a href="https://github.com/luckyframework/lucky_task/blob/eec178bae5e1740989e2e85fbd6e00393dc11a6c/src/lucky_task/task.cr#L61" target="_blank">View source</a>]
+          [<a href="https://github.com/luckyframework/lucky_task/blob/cee3f315251af27b3fc77e3ceabd8f2228e5d5ec/src/lucky_task/task.cr#L61" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -370,7 +442,7 @@ args from this position to the end. This will make your <code>arg_name</code> me
       <br/>
       <div>
         
-          [<a href="https://github.com/luckyframework/lucky_task/blob/eec178bae5e1740989e2e85fbd6e00393dc11a6c/src/lucky_task/task.cr#L79" target="_blank">View source</a>]
+          [<a href="https://github.com/luckyframework/lucky_task/blob/cee3f315251af27b3fc77e3ceabd8f2228e5d5ec/src/lucky_task/task.cr#L79" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -386,7 +458,7 @@ args from this position to the end. This will make your <code>arg_name</code> me
       <br/>
       <div>
         
-          [<a href="https://github.com/luckyframework/lucky_task/blob/eec178bae5e1740989e2e85fbd6e00393dc11a6c/src/lucky_task/task.cr#L41" target="_blank">View source</a>]
+          [<a href="https://github.com/luckyframework/lucky_task/blob/cee3f315251af27b3fc77e3ceabd8f2228e5d5ec/src/lucky_task/task.cr#L41" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -410,7 +482,7 @@ If the flag <code>--arg_name</code> is passed, the value is <code>true</code>.</
       <br/>
       <div>
         
-          [<a href="https://github.com/luckyframework/lucky_task/blob/eec178bae5e1740989e2e85fbd6e00393dc11a6c/src/lucky_task/task.cr#L171" target="_blank">View source</a>]
+          [<a href="https://github.com/luckyframework/lucky_task/blob/cee3f315251af27b3fc77e3ceabd8f2228e5d5ec/src/lucky_task/task.cr#L171" target="_blank">View source</a>]
         
       </div>
     </div>
