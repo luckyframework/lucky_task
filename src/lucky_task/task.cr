@@ -209,13 +209,13 @@ abstract class LuckyTask::Task
         {{ description }}
       ) do |value|
         value = value.strip
-        if value !~ /^[\+\-]?[0-9\_\,]+$/
+        if value !~ /^[\+\-]?[0-9\_]+$/
           raise <<-ERROR
             #{value.inspect} is an invalid value for {{ arg_name.id }}. It should be a valid Int32
-            Examples: 1 or 1,000 or 10_000 or -1
+            Examples: 1 or 1000 or 10_000 or -1
           ERROR
         end
-        @{{ arg_name.id }} = value.gsub(/[\_\,]/, "").to_i32
+        @{{ arg_name.id }} = value.gsub(/[\_]/, "").to_i32
       end
     end
 

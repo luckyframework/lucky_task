@@ -96,7 +96,7 @@ describe LuckyTask::Task do
     end
 
     it "sets int32 flags from args" do
-      task = TaskWithInt32Flags.new.print_help_or_call(args: ["-u 10,000", "--zero=1_000"]).not_nil!
+      task = TaskWithInt32Flags.new.print_help_or_call(args: ["-u 10000", "--zero=1_000"]).not_nil!
       task.zero.should eq 1_000
       task.uno.should eq 10_000
       expect_raises(Exception, /"nada" is an invalid value for uno/) do
@@ -105,7 +105,7 @@ describe LuckyTask::Task do
     end
 
     it "sets explicit negative/positive int32 flags from args" do
-      task = TaskWithInt32Flags.new.print_help_or_call(args: ["-u -10,000", "--zero=+1_000"]).not_nil!
+      task = TaskWithInt32Flags.new.print_help_or_call(args: ["-u -10_000", "--zero=+1_000"]).not_nil!
       task.zero.should eq 1_000
       task.uno.should eq -10_000
     end
