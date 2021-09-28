@@ -187,6 +187,80 @@ abstract class LuckyTask::Task
     end
   end
 
+  # Creates a method of `arg_name` where the return value is an Int32.
+  # If the flag `--arg_name` is passed, the result is the value passed, otherwise is set to
+  # the specified default, or `0` when not specified.
+  #
+  # * `arg_name` : String - The name of the argument
+  # * `description` : String - The help text description for this option
+  # * `shorcut` : String - An optional short flag (e.g. `-a`)
+  # * `default` : Int32 - An optional default value (`0` is default when omittted)
+  #
+  # Example:
+  #      int32 :limit, "limit (1000, 10_000, etc.)", shortcut: "-l", default: 1_000
+  macro int32(arg_name, description, shortcut = nil, default = nil)
+    {% PARSER_OPTS << arg_name %}
+    @{{ arg_name.id }} : Int32 = {{ default || 0 }}
+
+    def set_opt_for_{{ arg_name.id }}(unused_args : Array(String))
+      option_parser.on(
+        {% if shortcut %}"{{ shortcut.id }} {{ arg_name.stringify.upcase.id }}",{% end %}
+        "--{{ arg_name.id.stringify.underscore.gsub(/_/, "-").id }}={{ arg_name.id.stringify.upcase.id }}",
+        {{ description }}
+      ) do |value|
+        value = value.strip
+        if value !~ /^[\+\-]?[0-9\_]+$/
+          raise <<-ERROR
+            #{value.inspect} is an invalid value for {{ arg_name.id }}. It should be a valid Int32
+            Examples: 1 or 1000 or 10_000 or -1
+          ERROR
+        end
+        @{{ arg_name.id }} = value.gsub(/[\_]/, "").to_i32
+      end
+    end
+
+    def {{ arg_name.id }} : Int32
+      @{{ arg_name.id }}
+    end
+  end
+
+  # Creates a method of `arg_name` where the return value is an Float64.
+  # If the flag `--arg_name` is passed, the result is the value passed, otherwise is set to
+  # the specified default, or `0.0` when not specified.
+  #
+  # * `arg_name` : String - The name of the argument
+  # * `description` : String - The help text description for this option
+  # * `shorcut` : String - An optional short flag (e.g. `-a`)
+  # * `default` : Float64 - An optional default value (`0.0` is default when omittted)
+  #
+  # Example:
+  #      float64 :threshold, "(0.1, 3.14, -5.1, etc.)", shortcut: "-t", default: 2.0
+  macro float64(arg_name, description, shortcut = nil, default = nil)
+    {% PARSER_OPTS << arg_name %}
+    @{{ arg_name.id }} : Float64 = {{ default || 0.0 }}
+
+    def set_opt_for_{{ arg_name.id }}(unused_args : Array(String))
+      option_parser.on(
+        {% if shortcut %}"{{ shortcut.id }} {{ arg_name.stringify.upcase.id }}",{% end %}
+        "--{{ arg_name.id.stringify.underscore.gsub(/_/, "-").id }}={{ arg_name.id.stringify.upcase.id }}",
+        {{ description }}
+      ) do |value|
+        value = value.strip.gsub("_", "")
+        if value !~ /^[+-]?([0-9]*[.])?[0-9]+$/
+          raise <<-ERROR
+            #{value.inspect} is an invalid value for {{ arg_name.id }}. It should be a valid Float64
+            Examples: 1 or 1.0 or 1_000.0 or -1.0
+          ERROR
+        end
+        @{{ arg_name.id }} = value.to_f64
+      end
+    end
+
+    def {{ arg_name.id }} : Float64
+      @{{ arg_name.id }}
+    end
+  end
+
   abstract def call
   abstract def summary
 end
