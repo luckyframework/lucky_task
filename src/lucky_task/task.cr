@@ -11,7 +11,12 @@ abstract class LuckyTask::Task
     {% end %}
     end
 
+    @[Deprecated("Use `task_name` instead.")]
     def name : String
+      task_name
+    end
+
+    def task_name : String
       "{{@type.name.gsub(/::/, ".").underscore}}"
     end
 
@@ -19,7 +24,7 @@ abstract class LuckyTask::Task
       <<-TEXT
       #{summary}
 
-      Run this task with 'lucky #{name}'
+      Run this task with 'lucky #{task_name}'
       TEXT
     end
 
@@ -46,22 +51,34 @@ abstract class LuckyTask::Task
     end
   end
 
-  # Sets a custom title for the task
+  # DEPRECATED: Use `task_name` instead
+  macro name(name_text)
+    @[Deprecated("Use `task_name` instead.")]
+    def name
+      task_name
+    end
+
+    def task_name : String
+      {{name_text}}
+    end
+  end
+
+  # Renames the task name for CLI use
   #
-  # By default the name is derived from the full module and class name.
-  # However if that name is not desired, a custom one can be set.
+  # By default the task name is derived from the full module and class name.
+  # However if that task name is not desired, a custom one can be set.
   #
   # ```
   # class Dev::Prime < LuckyTask::Task
   #   # Would be "dev.prime" by default, but we want to set it to "dev.setup":
-  #   name "dev.setup"
+  #   task_name "dev.setup"
   #   summary "Seed the development database with example data"
   #
   #   # other methods, etc.
   # end
   # ```
-  macro name(name_text)
-    def name
+  macro task_name(name_text)
+    def task_name : String
       {{name_text}}
     end
   end

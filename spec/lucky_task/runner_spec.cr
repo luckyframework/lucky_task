@@ -6,7 +6,7 @@ describe LuckyTask::Runner do
   it "adds tasks to the runner when task classes are created" do
     expected_task_names = ["another_task", "my.cool_task", "my.custom_name", "task_with_args", "task_with_required_format_args", "task_with_switch_flags", "task_with_int32_flags", "task_with_float64_flags", "task_with_positional_args", "task_with_fancy_output"]
 
-    task_names = LuckyTask::Runner.tasks.map(&.name)
+    task_names = LuckyTask::Runner.tasks.map(&.task_name)
     task_names.size.should eq(expected_task_names.size)
 
     expected_task_names.each do |expected_task_name|
@@ -15,7 +15,7 @@ describe LuckyTask::Runner do
   end
 
   it "lists all the available tasks" do
-    LuckyTask::Runner.tasks.map(&.name).each do |name|
+    LuckyTask::Runner.tasks.map(&.task_name).each do |name|
       LuckyTask::Runner.tasks_list.should contain(name)
     end
   end
