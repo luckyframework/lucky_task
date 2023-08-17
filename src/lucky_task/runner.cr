@@ -62,6 +62,6 @@ class LuckyTask::Runner
   end
 
   def self.longest_task_name
-    tasks.map(&.name.size).max
+    tasks.max_of(&.name.size)
   end
 end
