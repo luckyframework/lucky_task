@@ -21,7 +21,7 @@ class LuckyTask::TaskNotFoundErrorMessage
   private def similar_task_name
     Levenshtein::Finder.find(
       @task_name,
-      LuckyTask::Runner.tasks.map(&.name),
+      LuckyTask::Runner.tasks.map(&.task_name),
       tolerance: 4
     )
   end

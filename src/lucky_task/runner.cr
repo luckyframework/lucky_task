@@ -5,7 +5,7 @@ class LuckyTask::Runner
   extend LuckyTask::TextHelpers
 
   def self.tasks
-    @@tasks.sort_by!(&.name)
+    @@tasks.sort_by!(&.task_name)
   end
 
   def self.run(args = ARGV, io : IO = STDERR)
@@ -43,14 +43,14 @@ class LuckyTask::Runner
   end
 
   def self.find_task(task_name : String)
-    @@tasks.find { |task| task.name == task_name }
+    @@tasks.find { |task| task.task_name == task_name }
   end
 
   def self.tasks_list
     String.build do |list|
       tasks.each do |task|
-        list << ("  #{arrow} " + task.name).colorize(:green)
-        list << list_padding_for(task.name)
+        list << ("  #{arrow} " + task.task_name).colorize(:green)
+        list << list_padding_for(task.task_name)
         list << task.summary
         list << "\n"
       end
@@ -62,6 +62,6 @@ class LuckyTask::Runner
   end
 
   def self.longest_task_name
-    tasks.max_of(&.name.size)
+    tasks.max_of(&.task_name.size)
   end
 end

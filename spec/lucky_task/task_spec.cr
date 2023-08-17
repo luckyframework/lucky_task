@@ -6,12 +6,12 @@ private abstract class ShouldNotBlowUpForAbstractClasses < LuckyTask::Task
 end
 
 describe LuckyTask::Task do
-  it "creates a name from the class name when inheriting" do
-    My::CoolTask.new.name.should eq "my.cool_task"
+  it "creates a task_name from the class name when inheriting" do
+    My::CoolTask.new.task_name.should eq "my.cool_task"
   end
 
-  it "uses a specified name over the auto generated name" do
-    Some::Other::Task.new.name.should eq "my.custom_name"
+  it "uses a specified task_name over the auto generated task_name" do
+    Some::Other::Task.new.task_name.should eq "my.custom_name"
   end
 
   it "creates summary text" do
