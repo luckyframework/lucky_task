@@ -5,15 +5,17 @@ abstract class LuckyTask::Task
     property option_parser : OptionParser = OptionParser.new
     property output : IO = STDOUT
 
+    macro finished
     {% if !@type.abstract? %}
       LuckyTask::Runner.tasks << self.new
     {% end %}
+    end
 
-    def name
+    def name : String
       "{{@type.name.gsub(/::/, ".").underscore}}"
     end
 
-    def help_message
+    def help_message : String
       <<-TEXT
       #{summary}
 
@@ -33,7 +35,7 @@ abstract class LuckyTask::Task
       end
     end
 
-    private def wants_help_message?(args)
+    private def wants_help_message?(args) : Bool
       args.any? { |arg| {"--help", "-h", "help"}.includes?(arg) }
     end
   end
@@ -105,7 +107,7 @@ abstract class LuckyTask::Task
       if @{{ arg_name.id }}.nil?
         raise "{{ arg_name.id }} is required, but no value was passed."
       end
-      @{{ arg_name.id }}.not_nil!
+      @{{ arg_name.id }}.as({% if to_end %}Array(String){% else %}String{% end %})
     end
   end
 
@@ -155,7 +157,7 @@ abstract class LuckyTask::Task
             --{{ arg_name.id.stringify.underscore.gsub(/_/, "-").id }}=SOME_VALUE
           ERROR
         end
-        @{{ arg_name.id }}.not_nil!
+        @{{ arg_name.id }}.as(String)
       {% else %}
         @{{ arg_name.id }}
       {% end %}
