@@ -44,24 +44,24 @@ describe LuckyTask::Task do
 
   describe "with command line args" do
     it "creates methods for the args and returns their values" do
-      task = TaskWithArgs.new.print_help_or_call(args: ["--model-name=User", "--model-type=Polymorphic"]).not_nil!
+      task = TaskWithArgs.new.print_help_or_call(args: ["--model-name=User", "--model-type=Polymorphic"]).as(TaskWithArgs)
       task.model_name.should eq "User"
       task.model_type.should eq "Polymorphic"
     end
 
     it "allows the args to be optional" do
-      task = TaskWithArgs.new.print_help_or_call(args: ["--model-name=User"]).not_nil!
+      task = TaskWithArgs.new.print_help_or_call(args: ["--model-name=User"]).as(TaskWithArgs)
       task.model_name.should eq "User"
       task.model_type.should eq nil
     end
 
     it "allows using an arg shortcut" do
-      task = TaskWithArgs.new.print_help_or_call(args: ["-m User"]).not_nil!
+      task = TaskWithArgs.new.print_help_or_call(args: ["-m User"]).as(TaskWithArgs)
       task.model_name.should eq "User"
     end
 
     it "raises an error when an arg is required and not passed" do
-      task = TaskWithRequiredFormatArgs.new.print_help_or_call(args: [""]).not_nil!
+      task = TaskWithRequiredFormatArgs.new.print_help_or_call(args: [""]).as(TaskWithRequiredFormatArgs)
       expect_raises(Exception, /--theme=SOME_VALUE/) do
         task.theme
       end
@@ -80,23 +80,23 @@ describe LuckyTask::Task do
     end
 
     it "sets switch flags that default to false" do
-      task = TaskWithSwitchFlags.new.print_help_or_call(args: [] of String).not_nil!
+      task = TaskWithSwitchFlags.new.print_help_or_call(args: [] of String).as(TaskWithSwitchFlags)
       task.admin?.should eq false
     end
 
     it "sets switch flags from args" do
-      task = TaskWithSwitchFlags.new.print_help_or_call(args: ["-a"]).not_nil!
+      task = TaskWithSwitchFlags.new.print_help_or_call(args: ["-a"]).as(TaskWithSwitchFlags)
       task.admin?.should eq true
     end
 
     it "sets int32 flags that default to 0" do
-      task = TaskWithInt32Flags.new.print_help_or_call(args: [] of String).not_nil!
+      task = TaskWithInt32Flags.new.print_help_or_call(args: [] of String).as(TaskWithInt32Flags)
       task.zero.should eq 0
       task.uno.should eq 1
     end
 
     it "sets int32 flags from args" do
-      task = TaskWithInt32Flags.new.print_help_or_call(args: ["-u 10000", "--zero=1_000"]).not_nil!
+      task = TaskWithInt32Flags.new.print_help_or_call(args: ["-u 10000", "--zero=1_000"]).as(TaskWithInt32Flags)
       task.zero.should eq 1_000
       task.uno.should eq 10_000
       expect_raises(Exception, /"nada" is an invalid value for uno/) do
@@ -105,20 +105,20 @@ describe LuckyTask::Task do
     end
 
     it "sets explicit negative/positive int32 flags from args" do
-      task = TaskWithInt32Flags.new.print_help_or_call(args: ["-u -10_000", "--zero=+1_000"]).not_nil!
+      task = TaskWithInt32Flags.new.print_help_or_call(args: ["-u -10_000", "--zero=+1_000"]).as(TaskWithInt32Flags)
       task.zero.should eq 1_000
       task.uno.should eq -10_000
     end
 
     it "sets float64 flags that default to 0" do
-      task = TaskWithFloat64Flags.new.print_help_or_call(args: [] of String).not_nil!
+      task = TaskWithFloat64Flags.new.print_help_or_call(args: [] of String).as(TaskWithFloat64Flags)
       task.zero.should eq 0.0
       task.uno.should eq 1.0
       task.pi.should eq 3.14
     end
 
     it "sets float64 flags from args" do
-      task = TaskWithFloat64Flags.new.print_help_or_call(args: ["-u 123_456.789", "--zero=1_000"]).not_nil!
+      task = TaskWithFloat64Flags.new.print_help_or_call(args: ["-u 123_456.789", "--zero=1_000"]).as(TaskWithFloat64Flags)
       task.zero.should eq 1_000.0
       task.uno.should eq 123_456.789
       task.pi.should eq 3.14
@@ -128,13 +128,13 @@ describe LuckyTask::Task do
     end
 
     it "sets explicit negative/positive float64 flags from args" do
-      task = TaskWithFloat64Flags.new.print_help_or_call(args: ["-u -100", "--zero=+505.1"]).not_nil!
+      task = TaskWithFloat64Flags.new.print_help_or_call(args: ["-u -100", "--zero=+505.1"]).as(TaskWithFloat64Flags)
       task.zero.should eq 505.1
       task.uno.should eq -100.0
     end
 
     it "allows positional args that do not require a flag name" do
-      task = TaskWithPositionalArgs.new.print_help_or_call(args: ["User", "name:String", "email:String"]).not_nil!
+      task = TaskWithPositionalArgs.new.print_help_or_call(args: ["User", "name:String", "email:String"]).as(TaskWithPositionalArgs)
       task.model.should eq "User"
       task.columns.should eq ["name:String", "email:String"]
     end

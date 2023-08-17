@@ -6,7 +6,7 @@ describe LuckyTask do
       file.gets_to_end
     end
 
-    version = /version\:(.*?)\n/.match(content).not_nil![1].strip
+    version = /version\:(.*?)\n/.match(content).as(Regex::MatchData)[1].strip
     version.should eq LuckyTask::VERSION
   end
 end
