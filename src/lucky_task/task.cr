@@ -5,11 +5,9 @@ abstract class LuckyTask::Task
     property option_parser : OptionParser = OptionParser.new
     property output : IO = STDOUT
 
-    macro finished
     {% if !@type.abstract? %}
       LuckyTask::Runner.tasks << self.new
     {% end %}
-    end
 
     @[Deprecated("Use `task_name` instead.")]
     def name : String
