@@ -6,7 +6,7 @@ abstract class LuckyTask::Task
     property output : IO = STDOUT
 
     {% if !@type.abstract? %}
-      LuckyTask::Runner.tasks << self.new
+      LuckyTask::Runner.register_task(self.new)
     {% end %}
 
     @[Deprecated("Use `task_name` instead.")]
@@ -44,7 +44,7 @@ abstract class LuckyTask::Task
   end
 
   macro summary(summary_text)
-    def summary
+    def summary : String
       {{summary_text}}
     end
   end
@@ -279,5 +279,5 @@ abstract class LuckyTask::Task
   end
 
   abstract def call
-  abstract def summary
+  abstract def summary : String
 end

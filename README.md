@@ -46,7 +46,7 @@ class SendDailyNotifications < LuckyTask::Task
   # Name is inferred from class name ("send_daily_notifications")
   # It can be overridden:
   #
-  #   name "app.send_daily_notifications"
+  #   task_name "app.send_daily_notifications"
   
   def call
     # Code that sends notifications to all your users...

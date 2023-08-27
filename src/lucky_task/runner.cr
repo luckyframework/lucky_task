@@ -1,10 +1,14 @@
 class LuckyTask::Runner
   @@tasks = [] of LuckyTask::Task
-  class_property? exit_with_error_if_not_found = true
+  class_property? exit_with_error_if_not_found : Bool = true
 
   extend LuckyTask::TextHelpers
 
-  def self.tasks
+  def self.register_task(task : LuckyTask::Task) : Nil
+    @@tasks.push(task)
+  end
+
+  def self.tasks : Array(LuckyTask::Task)
     @@tasks.sort_by!(&.task_name)
   end
 
@@ -32,7 +36,7 @@ class LuckyTask::Runner
     end
   end
 
-  def self.help_text
+  def self.help_text : Nil
     puts <<-HELP_TEXT
     Usage: lucky name.of.task [options]
 
@@ -42,11 +46,11 @@ class LuckyTask::Runner
     HELP_TEXT
   end
 
-  def self.find_task(task_name : String)
+  def self.find_task(task_name : String) : LuckyTask::Task?
     @@tasks.find { |task| task.task_name == task_name }
   end
 
-  def self.tasks_list
+  def self.tasks_list : String
     String.build do |list|
       tasks.each do |task|
         list << ("  #{arrow} " + task.task_name).colorize(:green)
@@ -57,11 +61,11 @@ class LuckyTask::Runner
     end
   end
 
-  def self.list_padding_for(task_name)
+  def self.list_padding_for(task_name) : String
     " " * (longest_task_name - task_name.size + 2)
   end
 
-  def self.longest_task_name
+  def self.longest_task_name : Int32
     tasks.max_of(&.task_name.size)
   end
 end
