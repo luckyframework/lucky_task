@@ -143,7 +143,7 @@
   </h2>
   
     
-      <a href="https://github.com/luckyframework/lucky_task/blob/f6c9c2f9d48018eadef3c1837a2f2092e43662ab/src/lucky_task/runner.cr#L1" target="_blank">
+      <a href="https://github.com/luckyframework/lucky_task/blob/0b8b33d4d69ae352177dd83b65eb3a6ff69e6723/src/lucky_task/runner.cr#L1" target="_blank">
         lucky_task/runner.cr
       </a>
     
@@ -172,27 +172,32 @@
       </li>
     
       <li class="entry-summary">
-        <a href="#exit_with_error_if_not_found%3F-class-method" class="signature"><strong>.exit_with_error_if_not_found?</strong></a>
+        <a href="#exit_with_error_if_not_found%3F%3ABool-class-method" class="signature"><strong>.exit_with_error_if_not_found?</strong> : Bool</a>
         
       </li>
     
       <li class="entry-summary">
-        <a href="#find_task%28task_name%3AString%29-class-method" class="signature"><strong>.find_task</strong>(task_name : String)</a>
+        <a href="#find_task%28task_name%3AString%29%3ALuckyTask%3A%3ATask%7CNil-class-method" class="signature"><strong>.find_task</strong>(task_name : String) : LuckyTask::Task | Nil</a>
         
       </li>
     
       <li class="entry-summary">
-        <a href="#help_text-class-method" class="signature"><strong>.help_text</strong></a>
+        <a href="#help_text%3ANil-class-method" class="signature"><strong>.help_text</strong> : Nil</a>
         
       </li>
     
       <li class="entry-summary">
-        <a href="#list_padding_for%28task_name%29-class-method" class="signature"><strong>.list_padding_for</strong>(task_name)</a>
+        <a href="#list_padding_for%28task_name%29%3AString-class-method" class="signature"><strong>.list_padding_for</strong>(task_name) : String</a>
         
       </li>
     
       <li class="entry-summary">
-        <a href="#longest_task_name-class-method" class="signature"><strong>.longest_task_name</strong></a>
+        <a href="#longest_task_name%3AInt32-class-method" class="signature"><strong>.longest_task_name</strong> : Int32</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#register_task%28task%3ALuckyTask%3A%3ATask%29%3ANil-class-method" class="signature"><strong>.register_task</strong>(task : LuckyTask::Task) : Nil</a>
         
       </li>
     
@@ -202,12 +207,12 @@
       </li>
     
       <li class="entry-summary">
-        <a href="#tasks-class-method" class="signature"><strong>.tasks</strong></a>
+        <a href="#tasks%3AArray%28LuckyTask%3A%3ATask%29-class-method" class="signature"><strong>.tasks</strong> : Array(LuckyTask::Task)</a>
         
       </li>
     
       <li class="entry-summary">
-        <a href="#tasks_list-class-method" class="signature"><strong>.tasks_list</strong></a>
+        <a href="#tasks_list%3AString-class-method" class="signature"><strong>.tasks_list</strong> : String</a>
         
       </li>
     
@@ -266,87 +271,103 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/luckyframework/lucky_task/blob/f6c9c2f9d48018eadef3c1837a2f2092e43662ab/src/lucky_task/runner.cr#L3" target="_blank">View source</a>]
+          [<a href="https://github.com/luckyframework/lucky_task/blob/0b8b33d4d69ae352177dd83b65eb3a6ff69e6723/src/lucky_task/runner.cr#L3" target="_blank">View source</a>]
         
       </div>
     </div>
   
-    <div class="entry-detail" id="exit_with_error_if_not_found?-class-method">
+    <div class="entry-detail" id="exit_with_error_if_not_found?:Bool-class-method">
       <div class="signature">
         
-        def self.<strong>exit_with_error_if_not_found?</strong>
+        def self.<strong>exit_with_error_if_not_found?</strong> : Bool
 
-        <a class="method-permalink" href="#exit_with_error_if_not_found%3F-class-method">#</a>
+        <a class="method-permalink" href="#exit_with_error_if_not_found%3F%3ABool-class-method">#</a>
       </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/luckyframework/lucky_task/blob/f6c9c2f9d48018eadef3c1837a2f2092e43662ab/src/lucky_task/runner.cr#L3" target="_blank">View source</a>]
+          [<a href="https://github.com/luckyframework/lucky_task/blob/0b8b33d4d69ae352177dd83b65eb3a6ff69e6723/src/lucky_task/runner.cr#L3" target="_blank">View source</a>]
         
       </div>
     </div>
   
-    <div class="entry-detail" id="find_task(task_name:String)-class-method">
+    <div class="entry-detail" id="find_task(task_name:String):LuckyTask::Task|Nil-class-method">
       <div class="signature">
         
-        def self.<strong>find_task</strong>(task_name : String)
+        def self.<strong>find_task</strong>(task_name : String) : <a href="../LuckyTask/Task.html">LuckyTask::Task</a> | Nil
 
-        <a class="method-permalink" href="#find_task%28task_name%3AString%29-class-method">#</a>
+        <a class="method-permalink" href="#find_task%28task_name%3AString%29%3ALuckyTask%3A%3ATask%7CNil-class-method">#</a>
       </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/luckyframework/lucky_task/blob/f6c9c2f9d48018eadef3c1837a2f2092e43662ab/src/lucky_task/runner.cr#L45" target="_blank">View source</a>]
+          [<a href="https://github.com/luckyframework/lucky_task/blob/0b8b33d4d69ae352177dd83b65eb3a6ff69e6723/src/lucky_task/runner.cr#L49" target="_blank">View source</a>]
         
       </div>
     </div>
   
-    <div class="entry-detail" id="help_text-class-method">
+    <div class="entry-detail" id="help_text:Nil-class-method">
       <div class="signature">
         
-        def self.<strong>help_text</strong>
+        def self.<strong>help_text</strong> : Nil
 
-        <a class="method-permalink" href="#help_text-class-method">#</a>
+        <a class="method-permalink" href="#help_text%3ANil-class-method">#</a>
       </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/luckyframework/lucky_task/blob/f6c9c2f9d48018eadef3c1837a2f2092e43662ab/src/lucky_task/runner.cr#L35" target="_blank">View source</a>]
+          [<a href="https://github.com/luckyframework/lucky_task/blob/0b8b33d4d69ae352177dd83b65eb3a6ff69e6723/src/lucky_task/runner.cr#L39" target="_blank">View source</a>]
         
       </div>
     </div>
   
-    <div class="entry-detail" id="list_padding_for(task_name)-class-method">
+    <div class="entry-detail" id="list_padding_for(task_name):String-class-method">
       <div class="signature">
         
-        def self.<strong>list_padding_for</strong>(task_name)
+        def self.<strong>list_padding_for</strong>(task_name) : String
 
-        <a class="method-permalink" href="#list_padding_for%28task_name%29-class-method">#</a>
+        <a class="method-permalink" href="#list_padding_for%28task_name%29%3AString-class-method">#</a>
       </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/luckyframework/lucky_task/blob/f6c9c2f9d48018eadef3c1837a2f2092e43662ab/src/lucky_task/runner.cr#L60" target="_blank">View source</a>]
+          [<a href="https://github.com/luckyframework/lucky_task/blob/0b8b33d4d69ae352177dd83b65eb3a6ff69e6723/src/lucky_task/runner.cr#L64" target="_blank">View source</a>]
         
       </div>
     </div>
   
-    <div class="entry-detail" id="longest_task_name-class-method">
+    <div class="entry-detail" id="longest_task_name:Int32-class-method">
       <div class="signature">
         
-        def self.<strong>longest_task_name</strong>
+        def self.<strong>longest_task_name</strong> : Int32
 
-        <a class="method-permalink" href="#longest_task_name-class-method">#</a>
+        <a class="method-permalink" href="#longest_task_name%3AInt32-class-method">#</a>
       </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/luckyframework/lucky_task/blob/f6c9c2f9d48018eadef3c1837a2f2092e43662ab/src/lucky_task/runner.cr#L64" target="_blank">View source</a>]
+          [<a href="https://github.com/luckyframework/lucky_task/blob/0b8b33d4d69ae352177dd83b65eb3a6ff69e6723/src/lucky_task/runner.cr#L68" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="register_task(task:LuckyTask::Task):Nil-class-method">
+      <div class="signature">
+        
+        def self.<strong>register_task</strong>(task : <a href="../LuckyTask/Task.html">LuckyTask::Task</a>) : Nil
+
+        <a class="method-permalink" href="#register_task%28task%3ALuckyTask%3A%3ATask%29%3ANil-class-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/luckyframework/lucky_task/blob/0b8b33d4d69ae352177dd83b65eb3a6ff69e6723/src/lucky_task/runner.cr#L7" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -362,39 +383,39 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/luckyframework/lucky_task/blob/f6c9c2f9d48018eadef3c1837a2f2092e43662ab/src/lucky_task/runner.cr#L11" target="_blank">View source</a>]
+          [<a href="https://github.com/luckyframework/lucky_task/blob/0b8b33d4d69ae352177dd83b65eb3a6ff69e6723/src/lucky_task/runner.cr#L15" target="_blank">View source</a>]
         
       </div>
     </div>
   
-    <div class="entry-detail" id="tasks-class-method">
+    <div class="entry-detail" id="tasks:Array(LuckyTask::Task)-class-method">
       <div class="signature">
         
-        def self.<strong>tasks</strong>
+        def self.<strong>tasks</strong> : Array(<a href="../LuckyTask/Task.html">LuckyTask::Task</a>)
 
-        <a class="method-permalink" href="#tasks-class-method">#</a>
+        <a class="method-permalink" href="#tasks%3AArray%28LuckyTask%3A%3ATask%29-class-method">#</a>
       </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/luckyframework/lucky_task/blob/f6c9c2f9d48018eadef3c1837a2f2092e43662ab/src/lucky_task/runner.cr#L7" target="_blank">View source</a>]
+          [<a href="https://github.com/luckyframework/lucky_task/blob/0b8b33d4d69ae352177dd83b65eb3a6ff69e6723/src/lucky_task/runner.cr#L11" target="_blank">View source</a>]
         
       </div>
     </div>
   
-    <div class="entry-detail" id="tasks_list-class-method">
+    <div class="entry-detail" id="tasks_list:String-class-method">
       <div class="signature">
         
-        def self.<strong>tasks_list</strong>
+        def self.<strong>tasks_list</strong> : String
 
-        <a class="method-permalink" href="#tasks_list-class-method">#</a>
+        <a class="method-permalink" href="#tasks_list%3AString-class-method">#</a>
       </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/luckyframework/lucky_task/blob/f6c9c2f9d48018eadef3c1837a2f2092e43662ab/src/lucky_task/runner.cr#L49" target="_blank">View source</a>]
+          [<a href="https://github.com/luckyframework/lucky_task/blob/0b8b33d4d69ae352177dd83b65eb3a6ff69e6723/src/lucky_task/runner.cr#L53" target="_blank">View source</a>]
         
       </div>
     </div>
