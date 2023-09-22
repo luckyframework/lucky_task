@@ -7,21 +7,21 @@ end
 
 describe LuckyTask::Task do
   it "creates a task_name from the class name when inheriting" do
-    My::CoolTask.new.task_name.should eq "my.cool_task"
+    My::CoolTask.task_name.should eq "my.cool_task"
   end
 
   it "uses a specified task_name over the auto generated task_name" do
-    Some::Other::Task.new.task_name.should eq "my.custom_name"
+    Some::Other::Task.task_name.should eq "my.custom_name"
   end
 
   it "creates summary text" do
-    My::CoolTask.new.summary.should eq "This task does something awesome"
+    My::CoolTask.task_summary.should eq "This task does something awesome"
   end
 
   it "has a default help message" do
-    message = My::CoolTask.new.help_message
+    message = My::CoolTask.task_help_message
     message.should contain "Run this task with 'lucky my.cool_task'"
-    message.should contain(My::CoolTask.new.summary)
+    message.should contain(My::CoolTask.task_summary)
   end
 
   describe "print_help_or_call" do
@@ -159,6 +159,18 @@ describe LuckyTask::Task do
 
       task.call
       task.output.to_s.should contain "Fancy output"
+    end
+  end
+
+  describe "methods that used to conflict" do
+    it "allows you to name the args whatever" do
+      task = TaskWithSimilarMethodNames.new
+      task.print_help_or_call(args: ["--name=name", "--task-name=task-name", "--summary=summary", "--task-summary=task-summary", "--help-message=help-message"]).as(TaskWithSimilarMethodNames)
+      task.name.should eq("name")
+      task.task_name.should eq("task-name")
+      task.summary.should eq("summary")
+      task.task_summary.should eq("task-summary")
+      task.help_message.should eq("help-message")
     end
   end
 end

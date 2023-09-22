@@ -17,16 +17,16 @@ abstract class LuckyTask::Task
 
     # By default, task summaries are optional.
     # Use the `summary` macro to define a custom summary
-    def self.summary : String
+    def self.task_summary : String
       ""
     end
 
     # The help text to be displayed when a help flag
     # is passed in (e.g. -h, --help)
     # Use the `help_message`
-    def self.help_message : String
+    def self.task_help_message : String
       <<-TEXT.strip
-      #{summary}
+      #{task_summary}
 
       Run this task with 'lucky #{task_name}'
       TEXT
@@ -34,7 +34,7 @@ abstract class LuckyTask::Task
 
     def print_help_or_call(args : Array(String))
       if wants_help_message?(args)
-        output.puts self.class.help_message
+        output.puts self.class.task_help_message
       else
         \{% for opt in @type.constant(:PARSER_OPTS) %}
         set_opt_for_\{{ opt.id }}(args)
@@ -54,7 +54,7 @@ abstract class LuckyTask::Task
   # This is used in the help_text when a help flag is passed
   # to the task through the CLI
   macro summary(summary_text)
-    def self.summary : String
+    def self.task_summary : String
       {{summary_text}}
     end
   end
@@ -73,7 +73,7 @@ abstract class LuckyTask::Task
   #   # other methods, etc.
   # end
   # ```
-  macro task_name(name_text)
+  macro name(name_text)
     def self.task_name : String
       {{name_text}}
     end
@@ -90,7 +90,7 @@ abstract class LuckyTask::Task
   # end
   # ```
   macro help_message(help_text)
-    def self.help_message : String
+    def self.task_help_message : String
       {{help_text}}
     end
   end

@@ -58,7 +58,7 @@ class LuckyTask::Runner
       tasks.each do |task|
         list << ("  #{arrow} " + task.task_name).colorize(:green)
         list << list_padding_for(task.task_name)
-        list << task.summary
+        list << task.task_summary
         list << "\n"
       end
     end
