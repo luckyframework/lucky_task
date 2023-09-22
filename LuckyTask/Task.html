@@ -129,7 +129,7 @@
   </h2>
   
     
-      <a href="https://github.com/luckyframework/lucky_task/blob/c657bc5be5e955ff0959a0430208e1c92c24c7ef/src/lucky_task/task.cr#L1" target="_blank">
+      <a href="https://github.com/luckyframework/lucky_task/blob/1acdb4898eca1b9cab9824131d3ca80de63434ae/src/lucky_task/task.cr#L1" target="_blank">
         lucky_task/task.cr
       </a>
     
@@ -156,11 +156,6 @@
     
       <li class="entry-summary">
         <a href="#call-instance-method" class="signature"><strong>#call</strong></a>
-        
-      </li>
-    
-      <li class="entry-summary">
-        <a href="#summary%3AString-instance-method" class="signature"><strong>#summary</strong> : String</a>
         
       </li>
     
@@ -193,6 +188,13 @@
       </li>
     
       <li class="entry-summary">
+        <a href="#help_message%28help_text%29-macro" class="signature"><strong>help_message</strong>(help_text)</a>
+        
+          <div class="summary"><p>Customize your help message with the provided <code>help_text</code></p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
         <a href="#int32%28arg_name%2Cdescription%2Cshortcut%3Dnil%2Cdefault%3Dnil%29-macro" class="signature"><strong>int32</strong>(arg_name, description, shortcut = <span class="n">nil</span>, default = <span class="n">nil</span>)</a>
         
           <div class="summary"><p>Creates a method of <code>arg_name</code> where the return value is an Int32.</p></div>
@@ -202,7 +204,7 @@
       <li class="entry-summary">
         <a href="#name%28name_text%29-macro" class="signature"><strong>name</strong>(name_text)</a>
         
-          <div class="summary"><p><span class="flag red">DEPRECATED</span>  Use <code><a href="../LuckyTask/Task.html#task_name%28name_text%29-macro">task_name</a></code> instead</p></div>
+          <div class="summary"><p>Renames the task name for CLI use</p></div>
         
       </li>
     
@@ -216,19 +218,14 @@
       <li class="entry-summary">
         <a href="#summary%28summary_text%29-macro" class="signature"><strong>summary</strong>(summary_text)</a>
         
+          <div class="summary"><p>The general description of what this task does</p></div>
+        
       </li>
     
       <li class="entry-summary">
         <a href="#switch%28arg_name%2Cdescription%2Cshortcut%3Dnil%29-macro" class="signature"><strong>switch</strong>(arg_name, description, shortcut = <span class="n">nil</span>)</a>
         
           <div class="summary"><p>Creates a method of <code>arg_name</code> where the return value is boolean.</p></div>
-        
-      </li>
-    
-      <li class="entry-summary">
-        <a href="#task_name%28name_text%29-macro" class="signature"><strong>task_name</strong>(name_text)</a>
-        
-          <div class="summary"><p>Renames the task name for CLI use</p></div>
         
       </li>
     
@@ -285,23 +282,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/luckyframework/lucky_task/blob/c657bc5be5e955ff0959a0430208e1c92c24c7ef/src/lucky_task/task.cr#L281" target="_blank">View source</a>]
-        
-      </div>
-    </div>
-  
-    <div class="entry-detail" id="summary:String-instance-method">
-      <div class="signature">
-        abstract 
-        def <strong>summary</strong> : String
-
-        <a class="method-permalink" href="#summary%3AString-instance-method">#</a>
-      </div>
-      
-      <br/>
-      <div>
-        
-          [<a href="https://github.com/luckyframework/lucky_task/blob/c657bc5be5e955ff0959a0430208e1c92c24c7ef/src/lucky_task/task.cr#L282" target="_blank">View source</a>]
+          [<a href="https://github.com/luckyframework/lucky_task/blob/1acdb4898eca1b9cab9824131d3ca80de63434ae/src/lucky_task/task.cr#L295" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -343,7 +324,7 @@ The CLI arg is specified by the <code>--arg_name=VALUE</code> flag.</p>
       <br/>
       <div>
         
-          [<a href="https://github.com/luckyframework/lucky_task/blob/c657bc5be5e955ff0959a0430208e1c92c24c7ef/src/lucky_task/task.cr#L138" target="_blank">View source</a>]
+          [<a href="https://github.com/luckyframework/lucky_task/blob/1acdb4898eca1b9cab9824131d3ca80de63434ae/src/lucky_task/task.cr#L152" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -374,7 +355,34 @@ float64 :threshold, &quot;(0.1, 3.14, -5.1, etc.)&quot;, shortcut: &quot;-t&quot
       <br/>
       <div>
         
-          [<a href="https://github.com/luckyframework/lucky_task/blob/c657bc5be5e955ff0959a0430208e1c92c24c7ef/src/lucky_task/task.cr#L255" target="_blank">View source</a>]
+          [<a href="https://github.com/luckyframework/lucky_task/blob/1acdb4898eca1b9cab9824131d3ca80de63434ae/src/lucky_task/task.cr#L269" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="help_message(help_text)-macro">
+      <div class="signature">
+        
+        macro <strong>help_message</strong>(help_text)
+
+        <a class="method-permalink" href="#help_message%28help_text%29-macro">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Customize your help message with the provided <code>help_text</code></p>
+<pre><code class="language-crystal"><span class="k">class</span> <span class="t">KeyGen</span> <span class="o">&lt;</span> <span class="t">LuckyTask</span><span class="t">::</span><span class="t">Task</span>
+  summary <span class="s">&quot;Generate a new key&quot;</span>
+  help_message <span class="s">&quot;Call lucky key_gen to generate a new key&quot;</span>
+
+  <span class="c"># other methods, etc.</span>
+<span class="k">end</span></code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/luckyframework/lucky_task/blob/1acdb4898eca1b9cab9824131d3ca80de63434ae/src/lucky_task/task.cr#L92" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -405,7 +413,7 @@ int32 :limit, &quot;limit (1000, 10_000, etc.)&quot;, shortcut: &quot;-l&quot;, 
       <br/>
       <div>
         
-          [<a href="https://github.com/luckyframework/lucky_task/blob/c657bc5be5e955ff0959a0430208e1c92c24c7ef/src/lucky_task/task.cr#L218" target="_blank">View source</a>]
+          [<a href="https://github.com/luckyframework/lucky_task/blob/1acdb4898eca1b9cab9824131d3ca80de63434ae/src/lucky_task/task.cr#L232" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -420,13 +428,22 @@ int32 :limit, &quot;limit (1000, 10_000, etc.)&quot;, shortcut: &quot;-l&quot;, 
       
         <div class="doc">
           
-          <p><span class="flag red">DEPRECATED</span>  Use <code><a href="../LuckyTask/Task.html#task_name%28name_text%29-macro">task_name</a></code> instead</p>
+          <p>Renames the task name for CLI use</p>
+<p>By default the task name is derived from the full module and class name.
+However if that task name is not desired, a custom one can be set.</p>
+<pre><code class="language-crystal"><span class="k">class</span> <span class="t">Dev</span><span class="t">::</span><span class="t">Prime</span> <span class="o">&lt;</span> <span class="t">LuckyTask</span><span class="t">::</span><span class="t">Task</span>
+  <span class="c"># Would be &quot;dev.prime&quot; by default, but we want to set it to &quot;dev.setup&quot;:</span>
+  task_name <span class="s">&quot;dev.setup&quot;</span>
+  summary <span class="s">&quot;Seed the development database with example data&quot;</span>
+
+  <span class="c"># other methods, etc.</span>
+<span class="k">end</span></code></pre>
         </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/luckyframework/lucky_task/blob/c657bc5be5e955ff0959a0430208e1c92c24c7ef/src/lucky_task/task.cr#L53" target="_blank">View source</a>]
+          [<a href="https://github.com/luckyframework/lucky_task/blob/1acdb4898eca1b9cab9824131d3ca80de63434ae/src/lucky_task/task.cr#L76" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -458,7 +475,7 @@ args from this position to the end. This will make your <code>arg_name</code> me
       <br/>
       <div>
         
-          [<a href="https://github.com/luckyframework/lucky_task/blob/c657bc5be5e955ff0959a0430208e1c92c24c7ef/src/lucky_task/task.cr#L96" target="_blank">View source</a>]
+          [<a href="https://github.com/luckyframework/lucky_task/blob/1acdb4898eca1b9cab9824131d3ca80de63434ae/src/lucky_task/task.cr#L110" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -471,10 +488,17 @@ args from this position to the end. This will make your <code>arg_name</code> me
         <a class="method-permalink" href="#summary%28summary_text%29-macro">#</a>
       </div>
       
+        <div class="doc">
+          
+          <p>The general description of what this task does</p>
+<p>This is used in the help_text when a help flag is passed
+to the task through the CLI</p>
+        </div>
+      
       <br/>
       <div>
         
-          [<a href="https://github.com/luckyframework/lucky_task/blob/c657bc5be5e955ff0959a0430208e1c92c24c7ef/src/lucky_task/task.cr#L46" target="_blank">View source</a>]
+          [<a href="https://github.com/luckyframework/lucky_task/blob/1acdb4898eca1b9cab9824131d3ca80de63434ae/src/lucky_task/task.cr#L56" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -501,37 +525,7 @@ If the flag <code>--arg_name</code> is passed, the value is <code>true</code>.</
       <br/>
       <div>
         
-          [<a href="https://github.com/luckyframework/lucky_task/blob/c657bc5be5e955ff0959a0430208e1c92c24c7ef/src/lucky_task/task.cr#L188" target="_blank">View source</a>]
-        
-      </div>
-    </div>
-  
-    <div class="entry-detail" id="task_name(name_text)-macro">
-      <div class="signature">
-        
-        macro <strong>task_name</strong>(name_text)
-
-        <a class="method-permalink" href="#task_name%28name_text%29-macro">#</a>
-      </div>
-      
-        <div class="doc">
-          
-          <p>Renames the task name for CLI use</p>
-<p>By default the task name is derived from the full module and class name.
-However if that task name is not desired, a custom one can be set.</p>
-<pre><code class="language-crystal"><span class="k">class</span> <span class="t">Dev</span><span class="t">::</span><span class="t">Prime</span> <span class="o">&lt;</span> <span class="t">LuckyTask</span><span class="t">::</span><span class="t">Task</span>
-  <span class="c"># Would be &quot;dev.prime&quot; by default, but we want to set it to &quot;dev.setup&quot;:</span>
-  task_name <span class="s">&quot;dev.setup&quot;</span>
-  summary <span class="s">&quot;Seed the development database with example data&quot;</span>
-
-  <span class="c"># other methods, etc.</span>
-<span class="k">end</span></code></pre>
-        </div>
-      
-      <br/>
-      <div>
-        
-          [<a href="https://github.com/luckyframework/lucky_task/blob/c657bc5be5e955ff0959a0430208e1c92c24c7ef/src/lucky_task/task.cr#L78" target="_blank">View source</a>]
+          [<a href="https://github.com/luckyframework/lucky_task/blob/1acdb4898eca1b9cab9824131d3ca80de63434ae/src/lucky_task/task.cr#L202" target="_blank">View source</a>]
         
       </div>
     </div>
