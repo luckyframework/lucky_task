@@ -8,11 +8,8 @@ end
 
 class Some::Other::Task < LuckyTask::Task
   summary "bar"
-  task_name "my.custom_name"
-
-  def help_message
-    "Custom help message"
-  end
+  name "my.custom_name"
+  help_message "Custom help message"
 
   def call
   end
@@ -97,10 +94,20 @@ class TaskWithPositionalArgs < LuckyTask::Task
 end
 
 class TaskWithFancyOutput < LuckyTask::Task
-  summary "This is a task with some fancy output"
-
   def call
     output.puts "Fancy output".colorize.green
+    self
+  end
+end
+
+class TaskWithSimilarMethodNames < LuckyTask::Task
+  arg :name, "Using name"
+  arg :task_name, "Using task_name"
+  arg :summary, "Using summary"
+  arg :task_summary, "Using task_summary"
+  arg :help_message, "Using help_message"
+
+  def call
     self
   end
 end

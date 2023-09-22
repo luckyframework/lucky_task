@@ -4,7 +4,7 @@ include HaveDefaultHelperMessageMatcher
 
 describe LuckyTask::Runner do
   it "adds tasks to the runner when task classes are created" do
-    expected_task_names = ["another_task", "my.cool_task", "my.custom_name", "task_with_args", "task_with_required_format_args", "task_with_switch_flags", "task_with_int32_flags", "task_with_float64_flags", "task_with_positional_args", "task_with_fancy_output"]
+    expected_task_names = ["another_task", "my.cool_task", "my.custom_name", "task_with_args", "task_with_required_format_args", "task_with_switch_flags", "task_with_int32_flags", "task_with_float64_flags", "task_with_positional_args", "task_with_fancy_output", "task_with_similar_method_names"]
 
     task_names = LuckyTask::Runner.tasks.map(&.task_name)
     task_names.size.should eq(expected_task_names.size)

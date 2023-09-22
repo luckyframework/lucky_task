@@ -1,14 +1,14 @@
 class LuckyTask::Runner
-  @@tasks = [] of LuckyTask::Task
+  @@tasks = [] of LuckyTask::Task.class
   class_property? exit_with_error_if_not_found : Bool = true
 
   extend LuckyTask::TextHelpers
 
-  def self.register_task(task : LuckyTask::Task) : Nil
+  def self.register_task(task : LuckyTask::Task.class) : Nil
     @@tasks.push(task)
   end
 
-  def self.tasks : Array(LuckyTask::Task)
+  def self.tasks : Array(LuckyTask::Task.class)
     @@tasks.sort_by!(&.task_name)
   end
 
@@ -21,7 +21,7 @@ class LuckyTask::Runner
       io.puts <<-HELP_TEXT
       Missing a task name
 
-      To see a list of available tasks, run #{"lucky --help".colorize(:green)}
+      To see a list of available tasks, run #{"lucky tasks".colorize(:green)}
       HELP_TEXT
     else
       if task = find_task(task_name)
@@ -47,7 +47,10 @@ class LuckyTask::Runner
   end
 
   def self.find_task(task_name : String) : LuckyTask::Task?
-    @@tasks.find { |task| task.task_name == task_name }
+    found_task = @@tasks.find { |task| task.task_name == task_name }
+    if found_task
+      found_task.new
+    end
   end
 
   def self.tasks_list : String
@@ -55,7 +58,7 @@ class LuckyTask::Runner
       tasks.each do |task|
         list << ("  #{arrow} " + task.task_name).colorize(:green)
         list << list_padding_for(task.task_name)
-        list << task.summary
+        list << task.task_summary
         list << "\n"
       end
     end
