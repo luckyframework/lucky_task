@@ -6,20 +6,26 @@ abstract class LuckyTask::Task
     property output : IO = STDOUT
 
     {% if !@type.abstract? %}
-      LuckyTask::Runner.register_task(self.new)
+      LuckyTask::Runner.register_task(self)
     {% end %}
 
-    @[Deprecated("Use `task_name` instead.")]
-    def name : String
-      task_name
-    end
-
-    def task_name : String
+    # The name of your task as derived by the class name
+    # Use the `task_name` macro to define a custom task name
+    def self.task_name : String
       "{{@type.name.gsub(/::/, ".").underscore}}"
     end
 
-    def help_message : String
-      <<-TEXT
+    # By default, task summaries are optional.
+    # Use the `summary` macro to define a custom summary
+    def self.summary : String
+      ""
+    end
+
+    # The help text to be displayed when a help flag
+    # is passed in (e.g. -h, --help)
+    # Use the `help_message`
+    def self.help_message : String
+      <<-TEXT.strip
       #{summary}
 
       Run this task with 'lucky #{task_name}'
@@ -28,7 +34,7 @@ abstract class LuckyTask::Task
 
     def print_help_or_call(args : Array(String))
       if wants_help_message?(args)
-        output.puts help_message
+        output.puts self.class.help_message
       else
         \{% for opt in @type.constant(:PARSER_OPTS) %}
         set_opt_for_\{{ opt.id }}(args)
@@ -43,21 +49,13 @@ abstract class LuckyTask::Task
     end
   end
 
+  # The general description of what this task does
+  #
+  # This is used in the help_text when a help flag is passed
+  # to the task through the CLI
   macro summary(summary_text)
-    def summary : String
+    def self.summary : String
       {{summary_text}}
-    end
-  end
-
-  # DEPRECATED: Use `task_name` instead
-  macro name(name_text)
-    @[Deprecated("Use `task_name` instead.")]
-    def name
-      task_name
-    end
-
-    def task_name : String
-      {{name_text}}
     end
   end
 
@@ -76,8 +74,24 @@ abstract class LuckyTask::Task
   # end
   # ```
   macro task_name(name_text)
-    def task_name : String
+    def self.task_name : String
       {{name_text}}
+    end
+  end
+
+  # Customize your help message with the provided `help_text`
+  #
+  # ```
+  # class KeyGen < LuckyTask::Task
+  #   summary "Generate a new key"
+  #   help_message "Call lucky key_gen to generate a new key"
+  #
+  #   # other methods, etc.
+  # end
+  # ```
+  macro help_message(help_text)
+    def self.help_message : String
+      {{help_text}}
     end
   end
 
@@ -279,5 +293,4 @@ abstract class LuckyTask::Task
   end
 
   abstract def call
-  abstract def summary : String
 end

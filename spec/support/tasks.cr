@@ -8,9 +8,9 @@ end
 
 class Some::Other::Task < LuckyTask::Task
   summary "bar"
-  task_name "my.custom_name"
+  name "my.custom_name"
 
-  def help_message
+  def self.help_message
     "Custom help message"
   end
 
